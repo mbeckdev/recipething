@@ -1,16 +1,18 @@
-import React from 'react';
+import React from 'react'
+import './ingredients.css'
 
 interface Props {
-    name: string;
+  name: string
 }
 
 const Ingredients = () => {
-    return (
-        <div>
-            Ingredients
-        </div>
-    )
+  return (
+    <div className="ingredients tool-and-ingredient">
+      <h2>Ingredients</h2>
+      <p>(pic) cereal - 1 cup - ingredient</p>
+      <p>(pic) milk - 1/2 cup - ingredient</p>
+    </div>
+  )
 }
-// const Intro: React.FC<Props> = ({ name }) => {
 
-export default Ingredients;
+export default Ingredients
