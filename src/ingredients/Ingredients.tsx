@@ -7,8 +7,10 @@ interface Props {
 
 const Ingredients = () => {
   return (
-    <div className="ingredients tool-and-ingredient">
-      <h2>Ingredients</h2>
+    <div className="ingredients tool-and-ingredient intro-ingredients-tools">
+      <div className="section-title">
+        <h2>Ingredients</h2>
+      </div>
       <p>(pic) cereal - 1 cup - ingredient</p>
       <p>(pic) milk - 1/2 cup - ingredient</p>
     </div>
