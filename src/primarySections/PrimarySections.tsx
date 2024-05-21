@@ -27,7 +27,7 @@ const PrimarySections = () => {
       food: food,
       tools: tools,
       state: state,
-      pic: 'pic',
+      pic: pic ? pic : 'pic',
       id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
       amount: { value: amountValue, unit: amountUnit },
     }

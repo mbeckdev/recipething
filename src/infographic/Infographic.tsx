@@ -61,25 +61,26 @@ const blobSpoon = makeBlob([], ['spoon'], 'mis', 'svgpic4')
 //   blobSpoon,
 // ])
 const firstStateArray2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
+// const firstStateArray2 = initialBlobs
 
-console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-// console.log(firstStateArray)
-// {
-//   "food": [
-//       "cereal",
-//       "milk"
-//   ],
-//   "tools": [
-//       "bowl",
-//       "spoon"
-//   ],
-//   "state": "mis",
-//   "pic": "",
-//   "id": "96732b79-2a28-49bc-9b1b-f45f0dc4ab4d"
-// }
-console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-console.log('firstStateArrray2 = ', firstStateArray2)
-console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+// console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+// // console.log(firstStateArray)
+// // {
+// //   "food": [
+// //       "cereal",
+// //       "milk"
+// //   ],
+// //   "tools": [
+// //       "bowl",
+// //       "spoon"
+// //   ],
+// //   "state": "mis",
+// //   "pic": "",
+// //   "id": "96732b79-2a28-49bc-9b1b-f45f0dc4ab4d"
+// // }
+// console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+// console.log('firstStateArrray2 = ', firstStateArray2)
+// console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 
 const array2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
 
@@ -110,17 +111,6 @@ const blah = theArray[0]
 // theArray[0].map((food) => {
 //     <div>pic - {food}</div>
 // })
-
-const allInitialItems = Array.isArray(theArray[0]) ? (
-  theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
-) : (
-  <div key={0}>Item: {theArray[0]}</div>
-)
-const allInitialTools = Array.isArray(theArray[0]) ? (
-  theArray[0].map((item, index) => <div key={index}>Tool: {item}</div>)
-) : (
-  <div key={0}>Tool: {theArray[0]}</div>
-)
 
 const state1 = {
   food: ['cereal', 'milk'],
@@ -171,6 +161,52 @@ const size1 = () => {
 }
 
 const Infographic = ({ initialBlobs }) => {
+  const renderInitialFoods = () => {
+    return initialBlobs.map((blob) => {
+      if (blob?.food?.[0]?.length > 0) {
+        return (
+          <div key={blob.id}>
+            <p>
+              Ingredient: (pic) {blob.food[0]} - {blob?.amount?.value}{' '}
+              {blob?.amount?.unit}{' '}
+            </p>
+          </div>
+        )
+      }
+    })
+  }
+  const renderInitialTools = () => {
+    return initialBlobs.map((blob) => {
+      if (blob?.tools?.[0]?.length > 0) {
+        return (
+          <div key={blob.id}>
+            <p>
+              Tool: (pic) {blob.tools[0]} - {blob?.amount?.value}{' '}
+              {blob?.amount?.unit}
+            </p>
+          </div>
+        )
+      }
+    })
+  }
+
+  Array.isArray(theArray[0]) ? (
+    theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
+  ) : (
+    <div key={0}>Item: {theArray[0]}</div>
+  )
+
+  // const allInitialItems = Array.isArray(theArray[0]) ? (
+  //   theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
+  // ) : (
+  //   <div key={0}>Item: {theArray[0]}</div>
+  // )
+  // const allInitialTools = Array.isArray(theArray[0]) ? (
+  //   theArray[0].map((item, index) => <div key={index}>Tool: {item}</div>)
+  // ) : (
+  //   <div key={0}>Tool: {theArray[0]}</div>
+  // )
+
   console.log('eeeeeeeeeeeee', initialBlobs)
 
   return (
@@ -180,8 +216,8 @@ const Infographic = ({ initialBlobs }) => {
       </div>
       <div className="ig__section">
         <div className="ig__section__title ig__mis">MIS EN PLACE</div>
-        {allInitialItems}
-        {allInitialTools}
+        {renderInitialFoods()}
+        {renderInitialTools()}
 
         <div className="ig__section__title">PREPARE</div>
         <div className="">
