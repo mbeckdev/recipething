@@ -215,3 +215,17 @@ h2 {
   align-items: center;
   /* border: 1px solid orange; */
 }
+
+.ig__section__title {
+  background-color: #0e040e;
+  /* border-bottom: 1px solid #ccc; */
+  /* border-top: 1px solid #ccc; */
+  /* width: 100%; */
+  /* display: block; */
+}
+
+.ig__mis {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid red;
+}
