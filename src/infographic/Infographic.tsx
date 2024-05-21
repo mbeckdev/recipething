@@ -15,8 +15,74 @@ interface Props {
   name: string
 }
 
+// const makeBlob = (food, tools, state, pic, id) => {
+const makeBlob = (food, tools, state, pic) => {
+  // create a uuid here.
+  const theid = uuidv4()
+  return {
+    food: food,
+    tools: tools,
+    state: state,
+    pic: 'pic',
+    id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
+  }
+}
+// const addBlobsToStateMisArray = (blobs) => {
+//   let foods = []
+//   let tools = []
+//   for (let i = 0; i < blobs.length; i++) {
+//     if (blobs[i].food.length > 0) {
+//       foods.push(blobs[i].food[0])
+//     }
+//     if (blobs[i].tools.length > 0) {
+//       tools.push(blobs[i].tools[0])
+//     }
+//   }
+//   return {
+//     food: foods,
+//     tools: tools,
+//     state: 'mis',
+//     pic: '',
+//     id: uuidv4(),
+//   }
+// }
+
 // let theArray = [[],[],'mis']
 const theArray = [['cereal', 'milk'], ['bowl', 'spoon'], 'mis'] //starting
+//...... const theArray = [blobCereal, blobMilk, blobBowl, blobSpoon]
+const blobCereal = makeBlob(['cereal'], [], 'mis', 'svgpic1')
+const blobMilk = makeBlob(['milk'], [], 'mis', 'svgpic2')
+const blobBowl = makeBlob([], ['bowl'], 'mis', 'svgpic3')
+const blobSpoon = makeBlob([], ['spoon'], 'mis', 'svgpic4')
+// const firstStateArray = addBlobsToStateMisArray([
+//   blobCereal,
+//   blobMilk,
+//   blobBowl,
+//   blobSpoon,
+// ])
+const firstStateArray2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
+
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+// console.log(firstStateArray)
+// {
+//   "food": [
+//       "cereal",
+//       "milk"
+//   ],
+//   "tools": [
+//       "bowl",
+//       "spoon"
+//   ],
+//   "state": "mis",
+//   "pic": "",
+//   "id": "96732b79-2a28-49bc-9b1b-f45f0dc4ab4d"
+// }
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+console.log('firstStateArrray2 = ', firstStateArray2)
+console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+
+const array2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
+
 // food state array, tool array, done food,.... done food, done tool,
 // food state array, tool array, .....
 
@@ -29,6 +95,7 @@ const theArray = [['cereal', 'milk'], ['bowl', 'spoon'], 'mis'] //starting
 
 // now in SERVE STATE
 // action -- serve cereal and milk, use spoon tool, SERVE STATE
+//    action(verb, [food1, food2, ...], [tool1, tool2, ...])
 
 // theArray state now =  [[['cereal', 'milk']],['bowl', 'spoon'], 'serve']
 
@@ -54,18 +121,6 @@ const allInitialTools = Array.isArray(theArray[0]) ? (
 ) : (
   <div key={0}>Tool: {theArray[0]}</div>
 )
-
-const makeBlob = (food, tools, state, pic, id) => {
-  // create a uuid here.
-  const theid = uuidv4()
-  return {
-    food: food,
-    tools: tools,
-    state: state,
-    pic: 'pic',
-    id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
-  }
-}
 
 const state1 = {
   food: ['cereal', 'milk'],
@@ -115,7 +170,9 @@ const size1 = () => {
   )
 }
 
-const Infographic = () => {
+const Infographic = ({ initialBlobs }) => {
+  console.log('eeeeeeeeeeeee', initialBlobs)
+
   return (
     <div className="infographic ">
       <div className="section-title">
@@ -150,8 +207,8 @@ const Infographic = () => {
 
 export default Infographic
 
-
-{/* <svg
+{
+  /* <svg
 className="spoon"
 xmlns="http://www.w3.org/2000/svg"
 width="24"
@@ -159,4 +216,5 @@ height="24"
 viewBox="0 0 24 24"
 >
 <path d="M12 0C5.37 0 0 5.37 0 12v12c0 6.63 5.37 12 12 12s12-5.37 12-12V12C24 5.37 18.63 0 12 0zm0 36c-6.63 0-12-5.37-12-12V12c0-6.63 5.37-12 12-12s12 5.37 12 12v12c0 6.63-5.37 12-12 12z" />
-</svg> */}
+</svg> */
+}

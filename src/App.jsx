@@ -5,16 +5,19 @@ import './App.css'
 import Intro from './intro/Intro'
 import Ingredients from './ingredients/Ingredients'
 import Infographic from './infographic/Infographic'
+import Tools from './tools/Tools'
+import PrimarySections from './primarySections/PrimarySections'
 // import { Intro}  from './intro/Intro'
 // import { Tools } from './tools/Tools'
 // import { Infographic } from './infographic/Infographic'
 // import { Ingredients } from './ingredients/Ingredients'
 
 // import  Intro from './intro/Intro'
-import Tools from './tools/Tools'
 
 function App() {
   // const [count, setCount] = useState(0)
+
+  const directions = 'something'
 
   return (
     <>
@@ -29,23 +32,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
+       */}
 
-      <Intro />
-      <Ingredients />
-      <Tools />
-      <Infographic />
+      <PrimarySections />
     </>
   )
 }

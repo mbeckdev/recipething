@@ -5,7 +5,7 @@ interface Props {
   name: string
 }
 
-const Ingredients = () => {
+const Ingredients = ({ initialBlobs }) => {
   return (
     <div className="ingredients tool-and-ingredient intro-ingredients-tools">
       <div className="section-title">
