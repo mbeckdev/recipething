@@ -29,11 +29,11 @@ const PrimarySections = () => {
       state: state,
       pic: 'pic',
       id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
-      amount: { value: 1, unit: 'ea' },
+      amount: { value: amountValue, unit: amountUnit },
     }
   }
   const blobCereal = makeBlob(['cereal'], [], 'mis', 'svgpic1', '1', 'cup')
-  const blobMilk = makeBlob(['milk'], [], 'mis', 'svgpic2', '1 / 2', 'cup')
+  const blobMilk = makeBlob(['milk'], [], 'mis', 'svgpic2', '1/2', 'cup')
   const blobBowl = makeBlob([], ['bowl'], 'mis', 'svgpic3', '1', 'ea')
   const blobSpoon = makeBlob([], ['spoon'], 'mis', 'svgpic4', '1', 'ea')
   const initialBlobs = [blobCereal, blobMilk, blobBowl, blobSpoon]

@@ -6,23 +6,28 @@ interface Props {
 
 const Tools = ({ initialBlobs }) => {
   console.log('initialBlobs[3].tools', initialBlobs[3].tools[0].length)
+
+  const renderToolBlobs = () => {
+    return initialBlobs.map((blob) => {
+      if (blob?.tools?.[0]?.length > 0) {
+        return (
+          <div key={blob.id}>
+            <p>
+              (pic) {blob.tools[0]} - {blob?.amount?.value} {blob?.amount?.unit}{' '}
+              - tool
+            </p>
+          </div>
+        )
+      }
+    })
+  }
+
   return (
     <div className="tools tool-and-ingredient intro-ingredients-tools">
       <div className="section-title">
         <h2>Tools</h2>
       </div>
-      {initialBlobs.map((blob) => {
-        if (blob?.tools?.[0]?.length > 0) {
-          return (
-            <div key={blob.id}>
-              <p>
-                (pic) {blob.tools[0]} - {blob?.amount?.value}{' '}
-                {blob?.amount?.unit} - tool
-              </p>
-            </div>
-          )
-        }
-      })}
+      {renderToolBlobs()}
     </div>
   )
 }
