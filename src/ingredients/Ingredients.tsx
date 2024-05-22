@@ -8,15 +8,16 @@ interface Props {
 const Ingredients = ({ initialBlobs }) => {
   const renderIngredientBlobs = () => {
     return initialBlobs.map((blob) => {
-      if (blob?.food?.[0]?.length > 0) {
-        return (
-          <div key={blob.id}>
-            <p>
-              (pic) {blob.food[0]} - {blob?.amount?.value} {blob?.amount?.unit}{' '}
-              - ingredient
+      if (blob?.foods?.length > 0) {
+        for (let i = 0; i < blob.foods.length; i++) {
+          console.log('asdf', blob.foods[i])
+          return (
+            <p key={blob.foods[i].naid}>
+              (pic) {blob.foods[i]?.name} - {blob.foods[i]?.amount?.value}
+              {blob?.foods[i]?.amount?.unit} - ingredient
             </p>
-          </div>
-        )
+          )
+        }
       }
     })
   }

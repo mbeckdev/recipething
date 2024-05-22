@@ -2,6 +2,14 @@ import React from 'react'
 import './infographic.css'
 import { v4 as uuidv4 } from 'uuid'
 import {
+  NameAmount,
+  makeBlob,
+  makeNameAmount,
+  getAllFoodsOrTools,
+  ABlob,
+  showBlob,
+} from '../util/blobHelper'
+import {
   IconSpoon,
   IconBowl,
   MySvgComponent100,
@@ -16,17 +24,18 @@ interface Props {
 }
 
 // const makeBlob = (food, tools, state, pic, id) => {
-const makeBlob = (food, tools, state, pic) => {
-  // create a uuid here.
-  const theid = uuidv4()
-  return {
-    food: food,
-    tools: tools,
-    state: state,
-    pic: 'pic',
-    id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
-  }
-}
+// const makeBlob = (food, tools, state, pic) => {
+//   // create a uuid here.
+//   const theid = uuidv4()
+//   return {
+//     food: food,
+//     tools: tools,
+//     state: state,
+//     pic: 'pic',
+//     id: theid, // 1d38af0d-e8d1-4b76-90ca-949b5366396b
+//   }
+// }
+
 // const addBlobsToStateMisArray = (blobs) => {
 //   let foods = []
 //   let tools = []
@@ -48,19 +57,19 @@ const makeBlob = (food, tools, state, pic) => {
 // }
 
 // let theArray = [[],[],'mis']
-const theArray = [['cereal', 'milk'], ['bowl', 'spoon'], 'mis'] //starting
+// const theArray = [['cereal', 'milk'], ['bowl', 'spoon'], 'mis'] //starting
 //...... const theArray = [blobCereal, blobMilk, blobBowl, blobSpoon]
-const blobCereal = makeBlob(['cereal'], [], 'mis', 'svgpic1')
-const blobMilk = makeBlob(['milk'], [], 'mis', 'svgpic2')
-const blobBowl = makeBlob([], ['bowl'], 'mis', 'svgpic3')
-const blobSpoon = makeBlob([], ['spoon'], 'mis', 'svgpic4')
+// const blobCereal = makeBlob(['cereal'], [], 'mis', 'svgpic1')
+// const blobMilk = makeBlob(['milk'], [], 'mis', 'svgpic2')
+// const blobBowl = makeBlob([], ['bowl'], 'mis', 'svgpic3')
+// const blobSpoon = makeBlob([], ['spoon'], 'mis', 'svgpic4')
 // const firstStateArray = addBlobsToStateMisArray([
 //   blobCereal,
 //   blobMilk,
 //   blobBowl,
 //   blobSpoon,
 // ])
-const firstStateArray2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
+// const firstStateArray2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
 // const firstStateArray2 = initialBlobs
 
 // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
@@ -82,7 +91,7 @@ const firstStateArray2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
 // console.log('firstStateArrray2 = ', firstStateArray2)
 // console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 
-const array2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
+// const array2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
 
 // food state array, tool array, done food,.... done food, done tool,
 // food state array, tool array, .....
@@ -105,12 +114,71 @@ const array2 = [blobCereal, blobMilk, blobBowl, blobSpoon]
 
 // map through food and tools.. for mis start
 
-const blah = theArray[0]
+// const blah = theArray[0]
 // const initialFoodArray = blah.map((food) => <div>pic - {food}</div>)
 
 // theArray[0].map((food) => {
 //     <div>pic - {food}</div>
 // })
+
+// initialBlobs =
+//[
+//   {
+//     "food": [
+//         "cereal"
+//     ],
+//     "tools": [],
+//     "state": "mis",
+//     "pic": "svgpic1",
+//     "id": "58c808c4-2663-4861-a03c-6cb93dfae77c",
+//     "amount": {
+//         "value": "1",
+//         "unit": "cup"
+//     }
+// },
+// {
+//     "food": [
+//         "milk"
+//     ],
+//     "tools": [],
+//     "state": "mis",
+//     "pic": "svgpic2",
+//     "id": "8af0384c-1ebe-42f1-8d08-cb04218cde6f",
+//     "amount": {
+//         "value": "1/2",
+//         "unit": "cup"
+//     }
+// },
+// {
+//     "food": [],
+//     "tools": [
+//         "bowl"
+//     ],
+//     "state": "mis",
+//     "pic": "svgpic3",
+//     "id": "54c2d039-82ec-4c04-a95c-d4ed2375a4f7",
+//     "amount": {
+//         "value": "1",
+//         "unit": "ea"
+//     }
+// },
+// {
+//     "food": [],
+//     "tools": [
+//         "spoon"
+//     ],
+//     "state": "mis",
+//     "pic": "svgpic4",
+//     "id": "f7b2fa06-9e44-44a4-8517-09af1463ab75",
+//     "amount": {
+//         "value": "1",
+//         "unit": "ea"
+//     }
+// }
+// ]
+
+// const state0 = initialBlobs;
+// const action1 = action([],'combine', makeBlob())
 
 const state1 = {
   food: ['cereal', 'milk'],
@@ -124,7 +192,7 @@ const state1a = makeBlob(
   'svgpic',
   'uuid01'
 )
-console.log(state1a.id)
+// console.log(state1a.id)
 const state2 = {
   food: ['cereal', 'milk'],
   tools: ['bowl'],
@@ -161,14 +229,18 @@ const size1 = () => {
 }
 
 const Infographic = ({ initialBlobs }) => {
+  //.
   const renderInitialFoods = () => {
-    return initialBlobs.map((blob) => {
-      if (blob?.food?.[0]?.length > 0) {
+    const allFoodsBlobs = getAllFoodsOrTools(initialBlobs, 'foods')
+
+    return allFoodsBlobs.map((blob) => {
+      // if (blob?.food?.[0]?.length > 0) {   //this already checked in getAllFoodsOrTools
+      for (let i = 0; i < blob.foods.length; i++) {
         return (
           <div key={blob.id}>
             <p>
-              Ingredient: (pic) {blob.food[0]} - {blob?.amount?.value}{' '}
-              {blob?.amount?.unit}{' '}
+              Ingredient: (pic) {blob.foods[i].name} -{' '}
+              {blob?.foods[i].amount?.value} {blob?.foods[i].amount?.unit}
             </p>
           </div>
         )
@@ -176,13 +248,16 @@ const Infographic = ({ initialBlobs }) => {
     })
   }
   const renderInitialTools = () => {
-    return initialBlobs.map((blob) => {
-      if (blob?.tools?.[0]?.length > 0) {
+    const allToolsBlobs = getAllFoodsOrTools(initialBlobs, 'tools')
+
+    return allToolsBlobs.map((blob) => {
+      // if (blob?.food?.[0]?.length > 0) {   //this already checked in getAllFoodsOrTools
+      for (let i = 0; i < blob.tools.length; i++) {
         return (
           <div key={blob.id}>
             <p>
-              Tool: (pic) {blob.tools[0]} - {blob?.amount?.value}{' '}
-              {blob?.amount?.unit}
+              Tool: (pic) {blob.tools[i].name} - {blob?.tools[i].amount?.value}{' '}
+              {blob?.tools[i].amount?.unit}
             </p>
           </div>
         )
@@ -190,11 +265,146 @@ const Infographic = ({ initialBlobs }) => {
     })
   }
 
-  Array.isArray(theArray[0]) ? (
-    theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
-  ) : (
-    <div key={0}>Item: {theArray[0]}</div>
+  // state0 = initialBlobs
+  // action01 - combine cereal and milk, use bowl tool, PREPARE STATE
+  // state1 = newblob = combineBlobs(initialBlobs, 'cereal', 'milk', 'bowl')
+  // action12 - serve newblob, use spoon tool, SERVE STATE
+  //matter?// state2 = doneblob = combineBlobs(newblob, 'spoon')
+  //later// action23 - clean doneblob, use sponge tool, CLEAN STATE (anything left?... noidea)
+
+  console.log('infographic -- initialBlobs = ', initialBlobs)
+  // const action = (startBlobs, verb, emdBlobs) => {
+  //   // return { verb: verb, endfoods: foods, endtools: tools }
+
+  //   return { startblobs, verb, endblobs }
+  // }
+
+  const findAllFoodsNAsFromBlobs = (blobs) => {
+    let foods: NameAmount[] = []
+    for (let i = 0; i < blobs.length; i++) {
+      if (blobs?.[i]?.foods?.length > 0) {
+        for (let j = 0; j < blobs[i].foods.length; j++) {
+          // console.log('aaaaaaaaaaaaaaaaaaaaaasfasdf  = ', blobs[i].foods[j])
+          foods.push(blobs[i].foods[j])
+        }
+      }
+    }
+    return foods
+  }
+
+  const findAllToolsNAsFromBlobs = (blobs) => {
+    let tools: NameAmount[] = []
+    for (let i = 0; i < blobs.length; i++) {
+      if (blobs?.[i]?.tools?.length > 0) {
+        for (let j = 0; j < blobs[i].tools.length; j++) {
+          // console.log('aaaaaaaaaaaaaaaaaaaaaasfasdf  = ', blobs[i].tools[j])
+          tools.push(blobs[i].tools[j])
+        }
+      }
+    }
+    return tools
+  }
+  // console.log(
+  //   'findAllToolsNAsFromBlobs(initialBlobs) = ',
+  //   findAllToolsNAsFromBlobs(initialBlobs)
+  // )
+  // console.log(
+  //   'findAllFoodsNAsFromBlobs(initialBlobs) = ',
+  //   findAllFoodsNAsFromBlobs(initialBlobs)
+  // )
+
+  const makeActionBlob = (startBlobs, verb): ABlob => {
+    // return { verb: verb, endfoods: foods, endtools: tools }
+    const endBlobs = []
+    if (verb === 'combine') {
+      console.log('is combine ')
+      // const endBlobs: ABlob[] = []
+
+      // console.log('startBlobs.length', startBlobs.length)
+      // for (let i = 0; i < startBlobs.length; i++) {
+
+      //   if (startBlobs[i].foods.length > 0) {
+      //     for (let j = 0; j < startBlobs[i].foods.length; j++) {
+      //       // console.log('startBlobs[i].foods[j] = ', startBlobs[i].foods[j])
+      //       endBlobs.push(startBlobs[i].foods[j])
+      //     }
+      //   }
+      // }
+
+      const allFoodsNAs = findAllFoodsNAsFromBlobs(startBlobs)
+      const allToolsNAs = findAllToolsNAsFromBlobs(startBlobs)
+      // console.log('333 allFoods - allTools = ', allFoodsNAs, '-', allToolsNAs)
+
+      // console.log('allFoodsNAs = ', allFoodsNAs)
+      // console.log('allToolsNAs = ', allToolsNAs)
+      const newblob: ABlob = makeBlob(
+        allFoodsNAs,
+        allToolsNAs,
+        'prepare',
+        'svgpic'
+      )
+      // console.log('newblob == ', newblob)
+      // console.log('blobMilkksdf', blobMilk)
+
+      // endBlobs.push(newblob)
+      // console.log('endBlobs', endBlobs)
+      return newblob
+      // return { endBlobs }
+    }
+  }
+
+  const blobCereal = initialBlobs.find((blob) =>
+    blob.foods.some((food) => food.name === 'cereal')
   )
+
+  // const blobCereal = initialBlobs[0]
+  const blobMilk = initialBlobs[1]
+  const blobBowl = initialBlobs[2]
+  const blobSpoon = initialBlobs[3]
+
+  // const rightSideBlob = makeActionBlob(initialBlobs.find((blob) => blob.food === 'milk'), 'combine')
+  const leftSideBlobs = [blobCereal, blobMilk, blobBowl]
+  const rightSideBlob = makeActionBlob(
+    [blobCereal, blobMilk, blobBowl],
+    'combine'
+  )
+  const verb = 'combine'
+  console.log('rightside = ', rightSideBlob)
+
+  const showAction = () => {
+    // return <div>showActionnnnnn</div>
+    console.log('rightSideBlob', rightSideBlob)
+    console.log('rightSideBlob.id', rightSideBlob.id)
+
+    const showLefts = (): JSX.Element[] => {
+      return leftSideBlobs.map((blob) => <div>{showBlob(blob)}</div>)
+    }
+    const showRights = (): JSX.Element[] => {
+      return [rightSideBlob].map((blob) => <div>{showBlob(blob)}</div>)
+    }
+    return (
+      <div>
+        <div>
+          <div>left---</div>
+          <div>{showLefts()}</div>
+          <div>---left</div>
+        </div>
+        <div>{verb}</div>
+        <div>
+          <div>right---</div>
+          <div>{showRights()}</div>
+          <div>---right</div>
+        </div>
+                {rightSideBlob.id}
+      </div>
+    )
+  }
+
+  // Array.isArray(theArray[0]) ? (
+  //   theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
+  // ) : (
+  //   <div key={0}>Item: {theArray[0]}</div>
+  // )
 
   // const allInitialItems = Array.isArray(theArray[0]) ? (
   //   theArray[0].map((item, index) => <div key={index}>Item: {item}</div>)
@@ -207,8 +417,6 @@ const Infographic = ({ initialBlobs }) => {
   //   <div key={0}>Tool: {theArray[0]}</div>
   // )
 
-  console.log('eeeeeeeeeeeee', initialBlobs)
-
   return (
     <div className="infographic ">
       <div className="section-title">
@@ -217,10 +425,12 @@ const Infographic = ({ initialBlobs }) => {
       <div className="ig__section">
         <div className="ig__section__title ig__mis">MIS EN PLACE</div>
         {renderInitialFoods()}
+        <div>?????????????do i need tools here in mis?????????</div>
         {renderInitialTools()}
 
         <div className="ig__section__title">PREPARE</div>
-        <div className="">
+
+        {/* <div className="">
           <SpoonySpoon />
         </div>
         <MySvgComponent24 />
@@ -230,9 +440,12 @@ const Infographic = ({ initialBlobs }) => {
         <IconMilk width="100" />
         <MySvgComponent100 />
         <SpoonSvgComponent />
-        <SpoonSvgComponent />
+        <SpoonSvgComponent /> */}
 
         <div>{state1.food}</div>
+        <div>0000000000000000000000000000</div>
+        {showAction()}
+        <div>0000000000000000000000000000</div>
         <div className="ig__section__title">SERVE</div>
         <div className="ig__section__title">CLEAN LOL</div>
         <div>{size1()}</div>

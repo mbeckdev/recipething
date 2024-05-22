@@ -9,15 +9,15 @@ const Tools = ({ initialBlobs }) => {
 
   const renderToolBlobs = () => {
     return initialBlobs.map((blob) => {
-      if (blob?.tools?.[0]?.length > 0) {
-        return (
-          <div key={blob.id}>
-            <p>
-              (pic) {blob.tools[0]} - {blob?.amount?.value} {blob?.amount?.unit}{' '}
-              - tool
+      if (blob?.tools?.length > 0) {
+        for (let i = 0; i < blob.tools.length; i++) {
+          return (
+            <p key={blob.tools[i].naid}>
+              (pic) {blob.tools[i]?.name} - {blob.tools[i]?.amount?.value}
+              {blob?.tools[i]?.amount?.unit} - tool
             </p>
-          </div>
-        )
+          )
+        }
       }
     })
   }
